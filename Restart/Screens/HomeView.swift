@@ -19,7 +19,7 @@ struct HomeView: View {
         CircleGroupView(ShapeColor: .gray, ShapeOpacity: 0.15)
         
         Image("character-2")
-          .resizable()
+           .resizable()
           .scaledToFit()
         .padding()
       }

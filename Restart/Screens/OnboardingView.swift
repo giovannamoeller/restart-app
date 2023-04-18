@@ -10,6 +10,8 @@ import SwiftUI
 struct OnboardingView: View {
   
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+  @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
+  @State private var buttonOffset: CGFloat = 0
   
   var body: some View {
     ZStack {
@@ -81,14 +83,24 @@ struct OnboardingView: View {
             }
             .foregroundColor(.white)
             .frame(width: 90, height: 90, alignment: .center)
-            .onTapGesture {
-              isOnboardingViewActive = false
-            }
+            .offset(x: buttonOffset)
+            .gesture(
+              DragGesture()
+                .onChanged({ gesture in
+                  print(gesture.translation.width, buttonWidth)
+                  if gesture.translation.width > 0 && gesture.translation.width < buttonWidth {
+                    buttonOffset = gesture.translation.width
+                  }
+                })
+                .onEnded({ gesture in
+                  buttonOffset = 0
+                })
+            )
             
             Spacer()
           }
           
-        }.frame(height: 90, alignment: .center)
+        }.frame(width: buttonWidth, height: 80, alignment: .center)
           .padding()
       }
     }
