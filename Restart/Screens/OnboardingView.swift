@@ -45,6 +45,42 @@ struct OnboardingView: View {
             .scaledToFit()
         }
         Spacer()
+        
+        ZStack {
+          Capsule()
+            .fill(Color.white.opacity(0.2))
+          Capsule()
+            .fill(Color.white.opacity(0.2))
+            .padding(16)
+          Text("Get Started")
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+            .offset(x: 20)
+          HStack {
+            Capsule()
+              .fill(Color("ColorRed"))
+              .frame(width: 90)
+            Spacer()
+          }
+          HStack {
+            ZStack {
+              Circle()
+                .fill(Color("ColorRed"))
+              Circle()
+                .fill(.black.opacity(0.15))
+                .padding(8)
+              Image(systemName: "chevron.right.2")
+                .font(.system(size: 24, weight: .bold))
+            }.foregroundColor(.white)
+            .frame(width: 90, height: 90, alignment: .center)
+            .onTapGesture {
+              isOnboardingViewActive = false
+            }
+            Spacer()
+          }
+        }.frame(height: 90, alignment: .center)
+          .padding()
       }
     }
   }
