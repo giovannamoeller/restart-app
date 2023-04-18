@@ -31,7 +31,20 @@ struct OnboardingView: View {
           .multilineTextAlignment(.center)
           .padding(.horizontal, 10)
         }
-        
+        ZStack {
+          ZStack {
+            Circle()
+              .stroke(.white.opacity(0.2), lineWidth: 40)
+              .frame(width: 260)
+            Circle()
+              .stroke(.white.opacity(0.2), lineWidth: 80)
+              .frame(width: 260)
+          }
+          Image("character-1")
+            .resizable()
+            .scaledToFit()
+        }
+        Spacer()
       }
     }
   }
