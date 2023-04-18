@@ -12,15 +12,17 @@ struct OnboardingView: View {
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
   
   var body: some View {
-    VStack(spacing: 20) {
-      Text("Onboarding")
-        .font(.largeTitle)
-      Button {
-        isOnboardingViewActive = false
-      } label: {
-        Text("Start")
+    ZStack {
+      Color("ColorBlue").ignoresSafeArea()
+      VStack(spacing: 20) {
+        Text("Onboarding")
+          .font(.largeTitle)
+        Button {
+          isOnboardingViewActive = false
+        } label: {
+          Text("Start")
+        }
       }
-
     }
   }
 }
