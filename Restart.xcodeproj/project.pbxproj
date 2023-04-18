@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4841FE2029EF5A4900C8617A /* CircleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4841FE1F29EF5A4900C8617A /* CircleGroupView.swift */; };
 		485573EB29EE439900A5BA99 /* RestartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485573EA29EE439900A5BA99 /* RestartApp.swift */; };
 		485573ED29EE439900A5BA99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485573EC29EE439900A5BA99 /* ContentView.swift */; };
 		485573EF29EE439A00A5BA99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 485573EE29EE439A00A5BA99 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4841FE1F29EF5A4900C8617A /* CircleGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroupView.swift; sourceTree = "<group>"; };
 		485573E729EE439900A5BA99 /* Restart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		485573EA29EE439900A5BA99 /* RestartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartApp.swift; sourceTree = "<group>"; };
 		485573EC29EE439900A5BA99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		485573FB29EE479700A5BA99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4841FE1F29EF5A4900C8617A /* CircleGroupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4841FE2029EF5A4900C8617A /* CircleGroupView.swift in Sources */,
 				485573FF29EE496200A5BA99 /* OnboardingView.swift in Sources */,
 				4855740129EE496900A5BA99 /* HomeView.swift in Sources */,
 				485573ED29EE439900A5BA99 /* ContentView.swift in Sources */,
