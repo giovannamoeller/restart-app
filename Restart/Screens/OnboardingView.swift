@@ -9,7 +9,16 @@ import SwiftUI
 
 struct OnboardingView: View {
   
+  private var buttonHeight: CGFloat = 80
+
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+
+  @State private var buttonWidth: Double
+  @State private var buttonOffset: CGFloat = 0
+  
+  init() {
+    buttonWidth = UIScreen.main.bounds.width - buttonHeight
+  }
   
   var body: some View {
     ZStack {
@@ -51,7 +60,7 @@ struct OnboardingView: View {
           
           Capsule()
             .fill(Color.white.opacity(0.2))
-            .padding(16)
+            .padding()
           
           Text("Get Started")
             .font(.title2)
@@ -62,7 +71,7 @@ struct OnboardingView: View {
           HStack {
             Capsule()
               .fill(Color("ColorRed"))
-              .frame(width: 90)
+              .frame(width: buttonOffset + buttonHeight)
             
             Spacer()
           }
@@ -80,15 +89,34 @@ struct OnboardingView: View {
                 .font(.system(size: 24, weight: .bold))
             }
             .foregroundColor(.white)
-            .frame(width: 90, height: 90, alignment: .center)
-            .onTapGesture {
-              isOnboardingViewActive = false
-            }
+            .frame(width: buttonHeight, height: buttonHeight, alignment: .center)
+            .offset(x: buttonOffset)
+            .gesture(
+              DragGesture()
+                .onChanged({ gesture in
+                  if gesture.translation.width > 0 && buttonOffset <= buttonWidth - buttonHeight {
+                    withAnimation {
+                      buttonOffset = gesture.translation.width
+                    }
+                  }
+                })
+                .onEnded({ _ in
+                  if buttonOffset > buttonWidth / 2 {
+                    withAnimation {
+                      isOnboardingViewActive = false
+                    }
+                  } else {
+                    withAnimation {
+                      buttonOffset = 0
+                    }
+                  }
+                })
+            )
             
             Spacer()
           }
           
-        }.frame(height: 90, alignment: .center)
+        }.frame(width: buttonWidth, height: buttonHeight, alignment: .center)
           .padding()
       }
     }
