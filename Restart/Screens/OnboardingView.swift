@@ -60,7 +60,7 @@ struct OnboardingView: View {
           
           Capsule()
             .fill(Color.white.opacity(0.2))
-            .padding()
+            .padding(8)
           
           Text("Get Started")
             .font(.title2)
