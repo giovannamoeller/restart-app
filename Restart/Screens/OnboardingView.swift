@@ -10,12 +10,14 @@ import SwiftUI
 struct OnboardingView: View {
   
   private var buttonHeight: CGFloat = 80
-
+  
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
-
+  
   @State private var buttonWidth: Double
   @State private var buttonOffset: CGFloat = 0
   @State private var isAnimating: Bool = false
+  @State private var imageOffset: CGSize = .zero
+  
   
   init() {
     buttonWidth = UIScreen.main.bounds.width - buttonHeight
@@ -56,6 +58,20 @@ struct OnboardingView: View {
             .scaledToFit()
             .opacity(isAnimating ? 1 : 0)
             .animation(.easeOut(duration: 1.0), value: isAnimating)
+            .offset(x: imageOffset.width * 1.2, y: 0)
+            .rotationEffect(.degrees(Double(imageOffset.width / 20)))
+            .gesture(
+              DragGesture()
+                .onChanged({ gesture in
+                  print(imageOffset.width)
+                  if abs(imageOffset.width) <= 150 {
+                    imageOffset = gesture.translation
+                  }
+                })
+                .onEnded({ _ in
+                  imageOffset = .zero
+                })
+            ).animation(.easeOut(duration: 1), value: imageOffset)
         }
         
         Spacer()
@@ -107,13 +123,13 @@ struct OnboardingView: View {
                   }
                 })
                 .onEnded({ _ in
-                    if buttonOffset > buttonWidth / 2 {
-                      isOnboardingViewActive = false
-                    } else {
-                      withAnimation(.easeOut(duration: 0.4)) {
-                        buttonOffset = 0
-                      }
+                  if buttonOffset > buttonWidth / 2 {
+                    isOnboardingViewActive = false
+                  } else {
+                    withAnimation(.easeOut(duration: 0.4)) {
+                      buttonOffset = 0
                     }
+                  }
                 })
             )
             
