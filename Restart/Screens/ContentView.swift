@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+  
   var body: some View {
     ZStack {
       if isOnboardingViewActive {
@@ -16,7 +17,7 @@ struct ContentView: View {
       } else {
         HomeView()
       }
-    }
+    }.animation(.easeIn(duration: 0.5), value: isOnboardingViewActive)
   }
 }
 

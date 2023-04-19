@@ -34,7 +34,9 @@ struct HomeView: View {
       Spacer()
       
       Button {
-        isOnboardingViewActive = true
+        withAnimation(.easeOut(duration: 2)) {
+          isOnboardingViewActive = true
+        }
       } label: {
           Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
             .foregroundColor(.white)
