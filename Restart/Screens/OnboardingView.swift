@@ -17,7 +17,8 @@ struct OnboardingView: View {
   @State private var buttonOffset: CGFloat = 0
   @State private var isAnimating: Bool = false
   @State private var imageOffset: CGSize = .zero
-  
+  @State private var indicatorOpacity: Double = 1.0
+  @State private var textTitle: String = "Share."
   
   init() {
     buttonWidth = UIScreen.main.bounds.width - buttonHeight
@@ -31,10 +32,11 @@ struct OnboardingView: View {
         Spacer()
         
         VStack(spacing: 0) {
-          Text("Share.")
+          Text(textTitle)
             .font(.system(size: 60))
             .fontWeight(.heavy)
             .foregroundColor(.white)
+            .transition(.opacity)
           
           Text("""
           It's not how much we give but
@@ -66,16 +68,33 @@ struct OnboardingView: View {
             .gesture(
               DragGesture()
                 .onChanged({ gesture in
-                  print(imageOffset.width)
                   if abs(imageOffset.width) <= 150 {
+                    withAnimation(.linear(duration: 0.25)) {
+                      indicatorOpacity = 0
+                      textTitle = "Give."
+                    }
                     imageOffset = gesture.translation
                   }
                 })
                 .onEnded({ _ in
                   imageOffset = .zero
+                  withAnimation(.linear(duration: 0.25)) {
+                    indicatorOpacity = 1
+                    textTitle = "Share."
+                  }
                 })
             ).animation(.easeOut(duration: 1), value: imageOffset)
-        }
+        }.overlay(
+          Image(systemName: "arrow.left.and.right.circle")
+            .font(.system(size: 44, weight: .ultraLight))
+            .foregroundColor(.white)
+            .offset(y: 20)
+            .opacity(isAnimating ? 1 : 0)
+            .animation(.easeOut(duration: 1), value: isAnimating)
+            .opacity(indicatorOpacity)
+          ,
+          alignment: .bottom
+        )
         
         Spacer()
         
