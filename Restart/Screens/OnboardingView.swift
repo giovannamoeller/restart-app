@@ -10,6 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
   
   private var buttonHeight: CGFloat = 80
+  let hapticFeedback = UINotificationFeedbackGenerator()
   
   @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
   
@@ -146,8 +147,11 @@ struct OnboardingView: View {
                 })
                 .onEnded({ _ in
                   if buttonOffset > buttonWidth / 2 {
+                    hapticFeedback.notificationOccurred(.success)
+                    playSound(sound: "chimeup", type: "mp3")
                     isOnboardingViewActive = false
                   } else {
+                    hapticFeedback.notificationOccurred(.warning)
                     withAnimation(.easeOut(duration: 0.4)) {
                       buttonOffset = 0
                     }

@@ -39,6 +39,7 @@ struct HomeView: View {
       Spacer()
       
       Button {
+        playSound(sound: "success", type: "m4a")
         isOnboardingViewActive = true
       } label: {
           Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
