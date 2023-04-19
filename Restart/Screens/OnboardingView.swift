@@ -126,7 +126,9 @@ struct OnboardingView: View {
           .offset(y: isAnimating ? 0 : 40)
           .animation(.easeOut(duration: 1), value: isAnimating)
       }.onAppear {
-        isAnimating = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+          isAnimating = true
+        })
       }
     }
   }
