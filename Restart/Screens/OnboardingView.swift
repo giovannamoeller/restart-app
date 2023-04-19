@@ -146,6 +146,7 @@ struct OnboardingView: View {
                 })
                 .onEnded({ _ in
                   if buttonOffset > buttonWidth / 2 {
+                    playSound(sound: "chimeup", type: "mp3")
                     isOnboardingViewActive = false
                   } else {
                     withAnimation(.easeOut(duration: 0.4)) {
@@ -167,7 +168,7 @@ struct OnboardingView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
           isAnimating = true
         })
-      }.preferredColorScheme(.dark)
+      }
     }
   }
 }
