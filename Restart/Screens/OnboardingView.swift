@@ -54,6 +54,8 @@ struct OnboardingView: View {
           Image("character-1")
             .resizable()
             .scaledToFit()
+            .opacity(isAnimating ? 1 : 0)
+            .animation(.easeOut(duration: 1.0), value: isAnimating)
         }
         
         Spacer()
@@ -122,6 +124,9 @@ struct OnboardingView: View {
           
         }.frame(width: buttonWidth, height: buttonHeight, alignment: .center)
           .padding()
+          .opacity(isAnimating ? 1 : 0)
+          .offset(y: isAnimating ? 0 : 40)
+          .animation(.easeOut(duration: 1), value: isAnimating)
       }.onAppear {
         isAnimating = true
       }
