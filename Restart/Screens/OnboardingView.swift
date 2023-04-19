@@ -167,7 +167,7 @@ struct OnboardingView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
           isAnimating = true
         })
-      }
+      }.preferredColorScheme(.dark)
     }
   }
 }
